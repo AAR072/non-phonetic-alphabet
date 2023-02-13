@@ -1,0 +1,76 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non Phonetic Alphabet</title>
+</head>
+
+<body>
+    <p>
+
+        Ever get a call from s scammer or annoying telemarketer? Don’t hang up, give them fake information. When you
+        need to spell something, make it harder. 
+        </p>
+    <input type="text" id="inputBox">
+    <button onclick="parseText()">Submit</button>
+    <p id="outputBox"></p>
+    <script>
+        // hardcoded because lazy
+        const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        const phrases = {
+            'a': ['aisle', 'aural', 'aye', 'are'],
+            'b': ['bee'],
+            'c': ['cue', 'czar - Zar', 'cede', 'charisma', 'chasm', 'champagne', 'chablis', 'celery', 'chorus', 'chimera'],
+            'd': ['Djibouti — Ji booty', 'djakarta', 'django', 'djinn', 'Djembe — Jim Bay — a traditional drum like a large bongo'],
+            'e': ['eye', 'ewe', 'earn', 'earl', 'euro', 'eight', 'eileen', 'eunuch', 'euphrates', 'eucalyptus', 'euthanasia'],
+            'f': ['for', 'Fizz — make a “fizzing” sound'],
+            'g': ['gnat', 'gnarl', 'gnome', 'genre'],
+            'h': ['hour', 'herb', 'heir', 'honor', 'honest'],
+            'i': ['isle', 'ian', 'illegal'],
+            'j': ['juan', 'javier', 'jalapeño'],
+            'k': ['know', 'knee', 'kneel', 'knife', 'knead', 'knight', 'Potassium — chemical symbol is “K”', "knave - nave"],
+            'l': ['like public transport trains in chicago - L trains are a type of train', 'listen'],
+            'm': ['mnemonic', 'me'],
+            'n': ['no', 'nit', 'neil'],
+            'o': ['one', 'our', 'owe', 'ouija', 'oedipus', 'oestrogen'],
+            'p': ['phlegm', 'phonetic', 'pneumonia', 'pneumatic', 'pterodactyl', 'phlegm', 'psalms', 'Urine — gotta go Pee'],
+            'q': ['Qatar — Kutar', 'Quiche — Keesh', 'Quay — Kway'],
+            'r': ['Like a Pirate — Arrrrrrrrr!', 'Rwanda', 'Roar — make a “Roar” sound'],
+            's': ['sea', 'scent', 'sealing', 'Sheik — Shake'],
+            't': ['tsunami', 'Tsar — Zar', 'teepee'],
+            'u': ['umlaut', 'urn', 'uvula'],
+            'v': ['Vroom — make a “Vroom” sound', '5 in roman numerals'],
+            'w': ['why', 'won', 'whole', 'write', 'wrap', 'wring', 'wrinkle', 'wrong', 'wrestle', 'Wagner — Vagner, the German composer'],
+            'x': ['xenon', 'xerxes', 'xenophobe', 'xylophone', 'xiphoid process', 'xena warrior princess'],
+            'y': ['you', 'ypsilanti', 'yvonne', 'yttrium'],
+            'z': ['ZZZ — Pronounced “Sleep”', 'zwieback', 'zsa zsa gabor', 'zero']
+        };
+
+        function getMatchingPhrase(letter) {
+            letter = letter.toLowerCase();
+            if (letter in phrases) {
+                const randomIndex = Math.floor(Math.random() * phrases[letter].length);
+                return `${letter}: ${phrases[letter][randomIndex]}`;
+            }
+            return null;
+        }
+
+        function parseText() {
+            let inputText = document.getElementById("inputBox").value;
+            let inputArray = inputText.split("");
+            let output = "";
+            inputArray.forEach(letter => {
+                let phrase = getMatchingPhrase(letter);
+                if (phrase) {
+                    output += phrase + "\n";
+                }
+            });
+            document.getElementById("outputBox").innerText = output;
+        }
+
+    </script>
+</body>
+
+</html>
